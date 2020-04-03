@@ -6,24 +6,30 @@
             .item 
                 nuxt-link(to="/zvonilo") Звонило
         .items.ml-auto 
-            .item 17.06
+            .item.p-05.color-white Тут я хочу текущую дату
 </template>
 
 <script>
+// import momemnt from 'moment'
 export default {
-    
+    data: () => ({
+        data: ''
+    })
 }
 </script>
 
 <style lang="scss" scoped>
 .navbar {
+    z-index: 100;
+    position: relative;
+    box-shadow: 0 0 10px #00000080;
     nav {
         display: flex;
-        background-color: #4b4b69;
+        background-color: #1c1c3e;
         .logo {
             color: white; 
             padding: .5rem 1rem;
-            background-color: #3f3f4f;
+            background-color: #f443368f;
             font-weight: 900;
         }
         .items {

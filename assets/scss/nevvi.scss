@@ -1,0 +1,231 @@
+@import "value.scss";
+
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+.m-0auto {
+    margin: 0 auto;
+}
+.ml-auto {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+
+
+
+@each $name,
+$size in $sizing {
+    .p-#{$name} {
+        padding: $size;
+    }
+
+    .py-#{$name} {
+        padding-top: $size;
+        padding-bottom: $size;
+    }
+
+    .px-#{$name} {
+        padding-left: $size;
+        padding-right: $size;
+    }
+
+    .pl-#{$name} {
+        padding-left: $size;
+    }
+
+    .pr-#{$name} {
+        padding-right: $size;
+    }
+
+    .pt-#{$name} {
+        padding-top: $size;
+    }
+
+    .pb-#{$name} {
+        padding-bottom: $size;
+    }
+
+    .m-#{$name} {
+        margin: $size;
+    }
+
+    .my-#{$name} {
+        margin-top: $size;
+        margin-bottom: $size;
+    }
+
+    .mx-#{$name} {
+        margin-left: $size;
+        margin-right: $size;
+    }
+
+    .ml-#{$name} {
+        margin-left: $size;
+    }
+
+    .mr-#{$name} {
+        margin-right: $size;
+    }
+
+    .mt-#{$name} {
+        margin-top: $size;
+    }
+
+    .mb-#{$name} {
+        margin-bottom: $size;
+    }
+    .fs-#{$name} {
+        font-size: $size;
+    }
+}
+
+@each $name, $color in $colors {
+    .color-#{$name} {
+        color: $color;
+    }
+    .bg-#{$name} {
+        background-color: $color;
+    }
+    .btn-#{$name} {
+        padding: .5rem 1rem;
+        background: $color;
+        border-radius: 4px;
+        box-shadow: 0 0 4px #00000040;
+        border:1px solid darken($color, 10%);
+        cursor: pointer;
+        &:hover {
+            box-shadow: 0 0 4px #00000060;
+            // border:1px solid darken($color, 20%);
+        }
+    }
+}
+@each $name, $width in $width {
+    .w-#{$name} {
+        width: $width;
+    }
+}
+
+.table {
+    position: relative;
+    border-radius: 4px;
+    &-title {
+        position: absolute;
+        top: -2rem;
+        left: .2rem;
+        padding: .5rem;
+        background: #fff;
+        border: 1px solid #00000040;
+        border-radius: 2px;
+    }
+    .row{
+        padding: .5rem .5rem .5rem 1rem;
+        
+        &:last-child {
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        &:nth-child(odd) {
+            background: #f4f4f4;
+        }
+        &:first-child {
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            padding-top: 1rem;
+            // border-radius: 4px 4px 0 0;
+        }
+    }
+}
+
+.border {
+    border: $border; 
+}
+
+.border-t {
+    border-top: $border;
+}
+.border-b {
+    border-bottom: $border;
+}
+
+.border-radius {
+    border-radius: 4px;
+}
+
+.bs-green{
+    box-shadow: 0 0 4px rgba(  map-get($map: $colors, $key: green), .6 );
+}
+.box-shadow{
+    box-shadow: 0 0 4px rgba(  map-get($map: $colors, $key: black), .6 );
+}
+.bs-d{
+    box-shadow: 0 0 4px rgba(  map-get($map: $colors, $key: black), .4 );
+}
+.ts {
+    text-shadow: 0px 0px 4px #00000030;
+}
+
+@each $name, $color in $colors {
+    .border-color-#{$name} {
+        border-color: $color;
+    }
+}
+
+.modal {
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    &-bg {
+        cursor: pointer;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba($color: #000000, $alpha: .2);
+    }
+    &-body {
+        box-shadow: 0 0 4px #00000050;
+        position: absolute;
+        background-color: white;
+        border-radius: 4px;
+        top: 10%;
+        left: 35%;
+        right: 35%;
+    }
+}
+
+.display-flex {
+    display: flex;
+}
+
+.display-block {
+    display: block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+input {
+    padding: .5rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #00000030;
+    &:focus {
+        border-color: map-get($colors, blue );
+    }
+}
+
+button {
+    padding: .5rem;
+    border-radius: 4px;
+    border: 1px solid #999;
+    cursor: pointer;
+}
+
+.font-cursive {
+    font-family: cursive;
+}

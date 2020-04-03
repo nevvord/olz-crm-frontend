@@ -1,0 +1,31 @@
+$sizing: (
+    '05': .5rem,
+    1: 1rem,
+    15: 1.5rem,
+    2: 2rem,
+    4: 4rem
+);
+
+$colors: (
+    main-1: #333, 
+    main-2: #333, 
+    main-3: #333, 
+    black: #000,
+    gray: #333,
+    blue: #364c9f,
+    blue-1: #2a3e88,
+    green: #8BC34A,
+    dGreen: rgb(84, 122, 40),
+    light: #f1f1f1,
+    light-1: rgb(224, 224, 224),
+    white: #fff,
+    orange: orange,
+    warning: rgb(255, 208, 55)
+);
+
+$width: (
+    100: 100%,
+    50: 50%
+);
+
+$border: 1px solid #000;

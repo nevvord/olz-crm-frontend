@@ -12,7 +12,7 @@ div
           input(type="text" name="login" placeholder="Enter login" v-model="form.login")
           input(type="password" name="password" placeholder="Enter password" v-model="form.password")
           button(type='submit') Вход
-
+  notifications(group="foo" position="bottom right")
 </template>
 <script>
 import Navbar from '~/components/Navbar'
@@ -22,23 +22,39 @@ export default {
     Navbar,
     Sidebar
   },
-  data() {return{
-    form: {
-      login: '',
-      password: ''
+  data() {
+    return {
+      form: {
+        login: '',
+        password: ''
+      }
     }
-  }},
-  beforeCreate() {
   },
+  beforeCreate() {},
   methods: {
-    signin(){
+    signin() {
       this.$axios.post('/auth/signin', this.form)
-          .then(response => {
-            this.$store.dispatch('auth/signin')
+        .then(({data}) => {
+          this.$store.dispatch('auth/signin')
+          localStorage.setItem('token', data.token)
+          this.$notify({
+            group: 'foo',
+            title: 'Успешно',
+            text: `${data.msg}`,
+            type: 'success'
           })
-          .catch(error => {
-            console.log(error.response.data.msg);
+        })
+        .catch(({response}) => {
+          console.log(response);
+          
+          this.$notify({
+            group: 'foo',
+            title: `Ошибка: ${response.status}`,
+            text: response.data.msg,
+            type: 'error'
           })
+          console.log(error.response.data.msg);
+        })
     }
   }
 }
@@ -60,6 +76,7 @@ export default {
   }
 
   .pages {
+    background-color: #ececec;
     .content {
       width: 100%;
       overflow-y: auto;

@@ -1,28 +1,24 @@
 <template lang="pug">
 .sidebar
-    .items
+    ZvoniloContent(v-if="$route.name === 'zvonilo'")
+    
             
 </template>
 
 <script>
-    export default {
-        
+import ZvoniloContent from './items/Zvonilo'
+export default {
+    components: {
+        ZvoniloContent
     }
+}
 </script>
 
 <style lang="scss" scoped>
 .sidebar {
-    background-color: #9fb4c5;
-    .items {
-        .item {
-            padding: .5rem;
-            cursor: pointer;
-            color: white;
-            // font-weight: 100;
-            &:hover {
-                background-color: #f1f1f120;
-            }
-        }
-    }
+    z-index: 99;
+    position: relative;
+    box-shadow: 2px 0 10px #00000080;
+    background-color: #8c2649;
 }
 </style>

@@ -30,6 +30,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/notify.js',
+    '~/plugins/axiosHeader.js',
+    '~/plugins/filters.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,7 +53,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:3013'
+    baseURL: 'http://localhost:3012'
   },
   /*
   ** Build configuration
