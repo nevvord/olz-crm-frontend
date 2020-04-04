@@ -11,7 +11,9 @@
 }
 .ml-auto {
     margin-left: auto;
-    margin-right: 0;
+}
+.mt-auto {
+    margin-top: auto;
 }
 
 
@@ -95,7 +97,8 @@ $size in $sizing {
         background: $color;
         border-radius: 4px;
         box-shadow: 0 0 4px #00000040;
-        border:1px solid darken($color, 10%);
+        height: fit-content;
+        width: fit-content;
         cursor: pointer;
         &:hover {
             box-shadow: 0 0 4px #00000060;
@@ -194,6 +197,12 @@ $size in $sizing {
         top: 10%;
         left: 35%;
         right: 35%;
+        &-lg {
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            right: 10%;
+        }
     }
 }
 
@@ -208,14 +217,41 @@ $size in $sizing {
 .text-center {
     text-align: center;
 }
-
-input {
-    padding: .5rem;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #00000030;
-    &:focus {
-        border-color: map-get($colors, blue );
+.va-bottom {
+    vertical-align: bottom;
+}
+.form-group {
+    position: relative;
+    label {
+        position: absolute;
+        top: .6rem;
+        left: .3rem;
+        color: darken(map-get($colors, light), 60%);
+        font-size: .9rem;
+        transition: .5s;
+        :hover{
+            top: -.3rem;
+            color: darken(map-get($colors, light), 100%);
+        }   
+    }
+    .nevvi-fg{
+        &-textarea {
+            width: 100%;
+            resize: none;
+            height: 300px;
+            border-radius: 4px;
+            padding: .5rem;
+        }
+        &-input {
+            padding: .5rem;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #00000030;
+            width: 100%;
+            &:focus {
+                border-color: map-get($colors, blue );
+            }
+        }
     }
 }
 
