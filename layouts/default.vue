@@ -13,6 +13,8 @@ div
           input(type="password" name="password" placeholder="Enter password" v-model="form.password")
           button(type='submit') Вход
   notifications(group="foo" position="bottom right")
+  #admin-place
+    p(v-if="$store.state.zvonilo._DATA") log: {{$store.state.zvonilo._DATA[0].type}}
 </template>
 <script>
 import Navbar from '~/components/Navbar'
@@ -30,7 +32,28 @@ export default {
       }
     }
   },
-  beforeCreate() {},
+  mounted() {
+    let kombo = {
+      first: '',
+      second: ''
+    }
+    const adminPlace = document.getElementById('admin-place')
+    document.addEventListener('keypress', (event) => {
+      if (!kombo.first) kombo.first = event.key
+      if (kombo.first) {
+        kombo.second = kombo.first
+        kombo.first = event.key
+      }
+      if (kombo.first === ']' && kombo.second === '[') {
+        console.log(kombo);
+        
+        kombo.first = ''
+        kombo.second = ''
+        if (!adminPlace.style.top) return adminPlace.style.top = '-5rem'
+        if (adminPlace.style.top === '-5rem') adminPlace.style.top = null
+      }
+    })
+  },
   methods: {
     signin() {
       this.$axios.post('/auth/signin', this.form)
@@ -45,21 +68,29 @@ export default {
           })
         })
         .catch(({response}) => {
-          console.log(response);
-          
           this.$notify({
             group: 'foo',
             title: `Ошибка: ${response.status}`,
             text: response.data.msg,
             type: 'error'
           })
-          console.log(error.response.data.msg);
         })
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+#admin-place {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4rem;
+  box-shadow: 0 0 6px #00000040;
+  z-index: 9999;
+  background-color: #fff;
+  transition: .3s;
+}
 .app {
   display: grid;
   height: 100vh;

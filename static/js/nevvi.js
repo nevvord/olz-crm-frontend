@@ -9,7 +9,7 @@ function FormGroupInput(event) {
   }
 }
 
-document.addEventListener('click', () => {
+document.addEventListener('focus', () => {
   const inputs = document.getElementsByClassName('nevvi-fg-input')
   for (let index = 0; index < inputs.length; index++) {
     if (!inputs[index].value) {
@@ -35,5 +35,7 @@ const allInputsCheck = () => {
     }
   }
 }
+
+
 
 console.log('nevvi work');
