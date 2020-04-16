@@ -7,7 +7,7 @@ div
         v-if="showModal"
     )
     .px-2.pt-4
-        .table.bg-white.bs-d(v-if="calls")
+        .table.bg-white.bs(v-if="calls")
             .table-title Холодные
             .row(v-for="(call, index) in calls" :key="index" v-if="call.type === 2")
                 .element

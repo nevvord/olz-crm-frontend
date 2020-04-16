@@ -109,7 +109,10 @@ export default {
     &:nth-child(3) {
       background: #f1f1f1;
       overflow-y: auto;
-      overflow-x: none;
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+
       padding: 15px;
 
       &::-webkit-scrollbar {

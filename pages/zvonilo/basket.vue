@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   .px-2.pt-4
-    .table.bg-white.bs-d(v-if="baskets")
+    .table.bg-white.bs(v-if="baskets")
       .table-title Корзина
       .row(v-for="(basket, index) in baskets" :key="index")
         .element
@@ -99,6 +99,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+}
 .element {
   position: relative;
   margin-right: 1rem;
