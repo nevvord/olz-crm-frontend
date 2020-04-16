@@ -4,21 +4,28 @@
         nuxt-link.logo(to="/") N
         .items
             .item 
-                nuxt-link(to="/zvonilo") Звонило
+                nuxt-link(to="/zvonilo" @click.native="changeSideBar('zvonilo')" :class="{'nav-active': $store.state.sideBar._BAR === 'zvonilo'}") Звонило
         .items.ml-auto 
             .item.p-05.color-white Тут я хочу текущую дату
 </template>
 
 <script>
-// import momemnt from 'moment'
 export default {
     data: () => ({
         data: ''
-    })
+    }),
+    methods: {
+        changeSideBar(bar) {
+            this.$store.dispatch('sideBar/changeBar', bar)
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+.nav-active {
+    box-shadow: inset 0 -2px 0 rgb(39, 94, 44);
+}
 .navbar {
     z-index: 100;
     position: relative;

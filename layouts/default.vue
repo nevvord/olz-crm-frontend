@@ -3,7 +3,7 @@ div
   .app(v-if="$store.state.auth._AUTH")
     Navbar
     Sidebar
-    nuxt.pages
+    nuxt
   div(v-else) 
     .auth
       .auth-body 
@@ -14,7 +14,7 @@ div
           button(type='submit') Вход
   notifications(group="foo" position="bottom right")
   #admin-place
-    p(v-if="$store.state.zvonilo._DATA") log: {{$store.state.zvonilo._DATA[0].type}}
+    p sideBar: {{$store.state.sideBar._BAR}}
 </template>
 <script>
 import Navbar from '~/components/Navbar'
@@ -45,12 +45,13 @@ export default {
         kombo.first = event.key
       }
       if (kombo.first === ']' && kombo.second === '[') {
-        console.log(kombo);
-        
         kombo.first = ''
         kombo.second = ''
-        if (!adminPlace.style.top) return adminPlace.style.top = '-5rem'
-        if (adminPlace.style.top === '-5rem') adminPlace.style.top = null
+        if (adminPlace.style.top === '-5rem') {
+          return adminPlace.style.top = '0'
+        }else{
+          return adminPlace.style.top = "-5rem"
+        }
       }
     })
   },
@@ -82,7 +83,7 @@ export default {
 <style lang="scss" scoped>
 #admin-place {
   position: fixed;
-  top: 0;
+  top: -5rem;
   right: 0;
   left: 0;
   height: 4rem;
@@ -104,12 +105,9 @@ export default {
     &:nth-child(2) {
       grid-row: 2 / -1;
     }
-  }
 
-  .pages {
-    background-color: #ececec;
-    .content {
-      width: 100%;
+    &:nth-child(3) {
+      background: #f1f1f1;
       overflow-y: auto;
       overflow-x: none;
       padding: 15px;
@@ -127,6 +125,7 @@ export default {
       }
     }
   }
+
 }
 
 .auth {

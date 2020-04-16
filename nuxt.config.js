@@ -34,6 +34,7 @@ export default {
   */
   plugins: [
     '~/plugins/notify.js',
+    '~/plugins/vuelidate.js',
     '~/plugins/axiosHeader.js',
     '~/plugins/filters.js'
   ],
@@ -41,6 +42,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    ['@nuxtjs/dotenv', { filename: '.env.prod' }]
   ],
   /*
   ** Nuxt.js modules

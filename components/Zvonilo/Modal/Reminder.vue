@@ -16,9 +16,10 @@ export default {
     methods: {
         remind() {
             this.$axios
-                .post(`/zvonilo/remind/${this.id}`, { reminder: this.reminder })
+                .post(`/zvonilo/remind/${this.id}`, { reminder: this.newReminder })
                 .then(({data}) => {
                     this.$store.dispatch('zvonilo/changeReminder', { index: this.index, date: this.newReminder })
+                    this.reminder = this.newReminder
                     this.$notify({
                         group: 'foo',
                         title: `Успешно!`,

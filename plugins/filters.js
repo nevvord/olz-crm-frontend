@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import moment from 'moment'
-Vue.use(moment)
 
 Vue.filter('formatDate', value => {
   if (value) {
-    return moment(String(value)).lang('ru').format('Do MMMM YYYY, LTS')
+    const date = value.split('T')
+    const time = date[1].split(':')
+    return `${date[0]}, ${time[0]}:${time[1]}`
   }
 })

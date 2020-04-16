@@ -7,7 +7,10 @@ export const mutations = {
     UPDATE_REMINDER(state, { index, date }) { state._DATA[index].reminder = date },
     CHANGE_STATUS(state, { index, status}) {state._DATA[index].status = status},
     CHANGE_TYPE(state, { index, type}) {state._DATA[index].type = type},
-    CHANGE_CALL(state, {index, curentCall}) {state._DATA[index] = curentCall}
+    CHANGE_CALL(state, {index, curentCall}) {state._DATA[index] = curentCall},
+    DELETE_CALL(state, id) {
+        state._DATA = state._DATA.filter(call => call._id !== id )
+    }
 }
 
 export const actions = {
@@ -31,10 +34,11 @@ export const actions = {
         commit('CHANGE_TYPE', {index, type})
     },
     changeCall({ commit, state }, { body, index }) {
-        debugger
         const curentCall = {...state._DATA[index], ...body}
-        debugger
         commit('CHANGE_CALL', { index, curentCall })
+    },
+    replaceBasket({ commit }, id) {
+        commit('DELETE_CALL', id)
     }
 }
 

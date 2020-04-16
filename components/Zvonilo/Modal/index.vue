@@ -26,8 +26,10 @@ div
           TypeChanger(:index="reminderIndex" :id="callInWork._id")
           StatusChanger(:index="reminderIndex" :id="callInWork._id")
           Reminder(:index="reminderIndex" :id="callInWork._id")
-            
-          button.btn-success.color-white.mt-auto.ml-auto.mr-1.mb-1(@click="changeCall") Сохранить
+          div.ml-auto
+            button.btn-success.color-white.mr-1(@click="changeCall") Сохранить
+            button.btn-danger.color-white(@click="replaceBasket") В корзину
+
 </template>
 
 <script>
@@ -35,7 +37,7 @@ import StatusChanger from '~/components/Zvonilo/Modal/statusChanger'
 import TypeChanger from '~/components/Zvonilo/Modal/typeChanger'
 import Reminder from '~/components/Zvonilo/Modal/Reminder'
 export default {
-  props: ['closeModal', 'reminderIndex'],
+  props: ['closeModal', 'reminderIndex', 'changeCalls'],
   components: {
     StatusChanger,
     TypeChanger,
@@ -69,6 +71,30 @@ export default {
           })
         })
         .catch(({response}) => {
+          this.$notify({
+            group: 'foo',
+            title: `Ошибка: ${response.status}`,
+            text: response.data.msg,
+            type: 'error'
+          })
+        })
+    },
+    replaceBasket() {
+      const id = this.callInWork._id
+      this.$axios
+        .put(`/zvonilo/replacebasket/${id}`)
+        .then(({ data }) => {
+          this.$store.dispatch('zvonilo/replaceBasket', id)
+          this.changeCalls(id)
+          this.closeModal()
+          this.$notify({
+            group: 'foo',
+            title: `Успешно!`,
+            text: data.msg,
+            type: 'success'
+          })
+        })
+        .catch(({ response }) => {
           this.$notify({
             group: 'foo',
             title: `Ошибка: ${response.status}`,

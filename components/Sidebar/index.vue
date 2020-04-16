@@ -1,8 +1,6 @@
 <template lang="pug">
 .sidebar
-    ZvoniloContent(v-if="$route.name === 'zvonilo'")
-    
-            
+    ZvoniloContent(v-if="$store.state.sideBar._BAR === 'zvonilo'")            
 </template>
 
 <script>
@@ -10,6 +8,12 @@ import ZvoniloContent from './items/Zvonilo'
 export default {
     components: {
         ZvoniloContent
+    },
+    beforeCreate() {
+        if (!this.$store.state.sideBar._BAR) {
+            const curentBar = this.$route.path.split('/')[1]
+            this.$store.dispatch('sideBar/changeBar', curentBar)
+        }
     }
 }
 </script>

@@ -7,9 +7,9 @@ div
         v-if="showModal"
     )
     .px-2.pt-4
-        .table.bg-white.bs(v-if="calls")
-            .table-title Все добавленные
-            .row(v-for="(call, index) in calls" :key="index")
+        .table.bg-white.bs-d(v-if="calls")
+            .table-title Горячие
+            .row(v-for="(call, index) in calls" :key="index" v-if="call.type === 1")
                 .element
                     .title Номер телефона 
                     .content {{ call.phone }}
@@ -71,17 +71,9 @@ export default {
 </script>
 
 <style lang="scss">
-.row {
-    display: grid;
-    grid-template-columns:  1fr 2fr 1fr 1fr 2fr 1fr 1fr 1fr;
-}
 .element {
     position: relative;
     margin-right: 1rem;
-    padding-right: .5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     .title {
         font-size: .6rem;
         color: #777;
