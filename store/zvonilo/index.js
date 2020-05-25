@@ -8,9 +8,8 @@ export const mutations = {
     CHANGE_STATUS(state, { index, status}) {state._DATA[index].status = status},
     CHANGE_TYPE(state, { index, type}) {state._DATA[index].type = type},
     CHANGE_CALL(state, {index, curentCall}) {state._DATA[index] = curentCall},
-    DELETE_CALL(state, id) {
-        state._DATA = state._DATA.filter(call => call._id !== id )
-    }
+    DELETE_CALL(state, id) {state._DATA = state._DATA.filter(call => call._id !== id )},
+    MERGE_DATA(state, newData) {state._DATA = state._DATA.concat(newData)}
 }
 
 export const actions = {
@@ -39,6 +38,27 @@ export const actions = {
     },
     replaceBasket({ commit }, id) {
         commit('DELETE_CALL', id)
+    },
+    async updateCallsAndMerge({commit, getters}, { vm, type }) {
+        const pagination = process.env.ZVONILO_PAGINATION
+        const skip = getters['getData'].length
+        let newData = null
+        if (type === "all"){
+            newData = await this.$axios.$get(`/zvonilo/get/calls/${skip}/${pagination}`)
+        }
+        if (type === "cold"){
+            newData = await this.$axios.$get(`/zvonilo/get/calls/cold/${skip}/${pagination}`)
+        }
+        if (type === "hot"){
+            newData = await this.$axios.$get(`/zvonilo/get/calls/hot/${skip}/${pagination}`)
+        }
+        vm.$notify({
+            group: 'foo',
+            title: `Загрузка успешна`,
+            text: `Загруженно еще ${newData.calls.length} клиентов`,
+            type: 'info'
+        })
+        commit('MERGE_DATA', newData.calls)
     }
 }
 

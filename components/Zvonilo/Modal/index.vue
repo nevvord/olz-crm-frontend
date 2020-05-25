@@ -7,28 +7,28 @@ div
         .ml-auto.p-1.ts {{callInWork.date | formatDate}}
       .form-grid
         .inputs.bs.p-2
-          .form-group.mb-2
+          .form-group-material.mb-2
             label(for="phoneNumber") Номер телефона
             input.nevvi-fg-input(v-model="callInWork.phone" type="text" name="phone" id="phoneNumber" onclick="FormGroupInput(event)")
-          .form-group.mb-2
+          .form-group-material.mb-2
             label(for="name") Имя пользователя
             input.nevvi-fg-input(v-model="callInWork.name" type="text" name="name" id="name" onclick="FormGroupInput(event)")
-          .form-group.mb-2
+          .form-group-material.mb-2
             label(for="email") Почтовый адресс
             input.nevvi-fg-input(v-model="callInWork.email" type="email" name="email" id="email" onclick="FormGroupInput(event)")
-          .form-group.mb-2
+          .form-group-material.mb-2
             label(for="firm") Фирма
             input.nevvi-fg-input(v-model="callInWork.firm" type="firm" name="firm" id="firm" onclick="FormGroupInput(event)")
-          .form-group.pr-1
-            .pl-05.color-gray Заметки
+          .form-group-material.pr-1
+            .pl-03.pb-03.color-gray Заметки
             textarea.nevvi-fg-textarea(v-model="callInWork.notes" type="notes" name="notes" id="notes" onclick="FormGroupInput(event)")
         .picked
           TypeChanger(:index="reminderIndex" :id="callInWork._id")
           StatusChanger(:index="reminderIndex" :id="callInWork._id")
           Reminder(:index="reminderIndex" :id="callInWork._id")
           div.ml-auto
-            button.btn-success.color-white.mr-1(@click="changeCall") Сохранить
-            button.btn-danger.color-white(@click="replaceBasket") В корзину
+            button.btn.btn-success.color-white.mr-1(@click="changeCall") Сохранить
+            button.btn.btn-danger.color-white(@click="replaceBasket") В корзину
 
 </template>
 

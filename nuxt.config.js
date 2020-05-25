@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 export default {
   mode: 'spa',
   /*
@@ -42,7 +42,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    ['@nuxtjs/dotenv', { filename: '.env.prod' }]
+    // ['@nuxtjs/dotenv', { filename: '.env.prod' }]
   ],
   /*
   ** Nuxt.js modules
@@ -52,13 +52,14 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:3012'
+    baseURL: process.env.BASE_URL || 'http://localhost:3012'
   },
   /*
   ** Build configuration

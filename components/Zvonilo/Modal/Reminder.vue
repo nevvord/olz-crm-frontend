@@ -3,7 +3,7 @@
     .pb-1.color-gray Напоминание звонка ({{reminder | formatDate}})
     div
         input.bs-d(type="datetime-local" id="pickDate" v-model="newReminder")
-        button.btn-white.ml-1(@click="remind" :disabled="!newReminder") Напомнить
+        button.btn.btn-white.ml-1(@click="remind" :disabled="!newReminder") Напомнить
 </template>
 
 <script>
@@ -20,6 +20,7 @@ export default {
                 .then(({data}) => {
                     this.$store.dispatch('zvonilo/changeReminder', { index: this.index, date: this.newReminder })
                     this.reminder = this.newReminder
+                    this.newReminder = null
                     this.$notify({
                         group: 'foo',
                         title: `Успешно!`,

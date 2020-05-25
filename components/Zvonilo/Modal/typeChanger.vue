@@ -1,5 +1,5 @@
 <template lang="pug">
-.type.display-flex.p-1.bg-light.border-radius.mb-1.bs
+.type.d-flex.p-1.bg-light.border-radius.mb-1.bs.bs.align-content-center
     .type-pick.py-05.px-1.color-white.bg-danger-05(
         :class="{'bg-danger bs': type === 1}"
         @click="pickType(1)"

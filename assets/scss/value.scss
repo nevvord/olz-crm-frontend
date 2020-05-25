@@ -1,33 +1,36 @@
 $sizing: (
+    '03': .3rem,
     '05': .5rem,
     1: 1rem,
+    12: 1.2rem,
     15: 1.5rem,
     2: 2rem,
-    4: 4rem
+    3: 3rem,
+    4: 4rem,
+    none: 0
 );
 
 $colors: (
-    main-1: #333, 
-    main-2: #333, 
-    main-3: #333,
-    success-05: rgba(#28a745, .5),
-    success: #28a745,
-    warning-05: rgba(255, 208, 55, .5),
-    warning: rgb(255, 208, 55),
-    danger-05: rgba(175, 65, 65, .5),
-    danger: rgb(175, 65, 65),
-    black: #000,
-    gray-05: #33333350,
-    gray: #333,
-    blue-05: rgba(#364c9f, .5),
-    blue: #364c9f,
-    blue-1: #2a3e88,
-    green: #8BC34A,
-    dGreen: rgb(84, 122, 40),
-    light: #f1f1f1,
-    light-1: rgb(224, 224, 224),
+    main-1: #364c9f, 
+    main-2: #8BC34A, 
+    main-3: #151515,
+
+    instagram: #C13584,
+
+    success: #26ae60,
+    danger: #f44336,
+    warning: #ffbf00,
+    dark: #263337,
+    light: #f4f2f1,
+    blue: #4169e1,
     white: #fff,
-    orange: orange
+    black: #000,
+    purple: #a14189,
+
+    light-1: #c1c1c1,
+    light-2: #8a8a8a,
+    gray: rgb(85, 85, 85),
+    orange: #FF4500
 );
 
 $width: (

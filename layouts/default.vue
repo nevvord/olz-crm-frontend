@@ -9,12 +9,12 @@ div
       .auth-body 
         p Введите логин и пароль
         form(@submit.prevent="signin")
-          input(type="text" name="login" placeholder="Enter login" v-model="form.login")
-          input(type="password" name="password" placeholder="Enter password" v-model="form.password")
+          input(type="text" name="login" placeholder="Введите логин" v-model="form.login")
+          input(type="password" name="password" placeholder="Введите пароль" v-model="form.password")
           button(type='submit') Вход
   notifications(group="foo" position="bottom right")
-  #admin-place
-    p sideBar: {{$store.state.sideBar._BAR}}
+  #admin-place(v-if="$store.state.auth._USER && $store.state.auth._USER.mode <= 1")
+    .p-05.bg-dark.color-white Categories {{$store.state.auth._USER}}
 </template>
 <script>
 import Navbar from '~/components/Navbar'
@@ -24,6 +24,7 @@ export default {
     Navbar,
     Sidebar
   },
+  middleware: 'auth/verify',
   data() {
     return {
       form: {
@@ -37,29 +38,32 @@ export default {
       first: '',
       second: ''
     }
-    const adminPlace = document.getElementById('admin-place')
     document.addEventListener('keypress', (event) => {
-      if (!kombo.first) kombo.first = event.key
-      if (kombo.first) {
-        kombo.second = kombo.first
-        kombo.first = event.key
-      }
-      if (kombo.first === ']' && kombo.second === '[') {
-        kombo.first = ''
-        kombo.second = ''
-        if (adminPlace.style.top === '-5rem') {
-          return adminPlace.style.top = '0'
-        }else{
-          return adminPlace.style.top = "-5rem"
+      const adminPlace = document.getElementById('admin-place')
+      if (this.$store.state.auth._USER.mode <= 1) {
+        if (!kombo.first) kombo.first = event.key
+        if (kombo.first) {
+          kombo.second = kombo.first
+          kombo.first = event.key
+        }
+        if (kombo.first === ']' && kombo.second === '[') {
+          kombo.first = ''
+          kombo.second = ''
+          if (adminPlace.style.bottom === '-20rem') {
+            return adminPlace.style.bottom = '0'
+          }else{
+            return adminPlace.style.bottom = '-20rem'
+          }
         }
       }
     })
   },
   methods: {
     signin() {
-      this.$axios.post('/auth/signin', this.form)
+      this.$axios.post('/user/auth/signin', this.form)
         .then(({data}) => {
           this.$store.dispatch('auth/signin')
+          this.$store.dispatch('auth/updateUser', data.user)
           localStorage.setItem('token', data.token)
           this.$notify({
             group: 'foo',
@@ -83,10 +87,9 @@ export default {
 <style lang="scss" scoped>
 #admin-place {
   position: fixed;
-  top: -5rem;
+  bottom: -100rem;
   right: 0;
   left: 0;
-  height: 4rem;
   box-shadow: 0 0 6px #00000040;
   z-index: 9999;
   background-color: #fff;
@@ -109,7 +112,7 @@ export default {
     &:nth-child(3) {
       background: #f1f1f1;
       overflow-y: auto;
-      white-space: nowrap;
+      // white-space: nowrap;
       overflow-x: hidden;
       text-overflow: ellipsis;
 

@@ -1,6 +1,6 @@
 <template lang="pug">
-.status.display-flex.p-1.bg-light.border-radius.mb-1.bs(
-  :class="{'border border-blue': status === 1, 'border border-orange': status === 2, 'border border-danger': status === 3}"
+.status.d-flex.p-1.bg-light.border-radius.mb-1.bs.align-content-center(
+  :class="{'border border-blue': status === 1, 'border border-warning': status === 2, 'border border-danger': status === 3}"
   v-if="status"
 )
   .status-pick.py-05.px-1.color-white.bg-blue-05(

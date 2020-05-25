@@ -1,11 +1,46 @@
 @import "value.scss";
+@import 'row-col/row-col.scss';
 
-*{
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
+*,
+::after,
+::before {
+  box-sizing: border-box
 }
 
+
+
+html {
+    font-family: sans-serif;
+    line-height: 1;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: transparent
+}
+
+@-ms-viewport {
+    width: device-width
+}
+
+body {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #212529;
+    text-align: left;
+    background-color: #fff
+}
+.f-nevvi {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.f-cap {
+    text-transform: capitalize;
+}
+a {
+    color: rgb(51, 76, 155);
+    text-decoration: none;
+}
 .m-0auto {
     margin: 0 auto;
 }
@@ -15,30 +50,234 @@
 .mt-auto {
     margin-top: auto;
 }
+.m-auto {
+    margin: auto;
+}
 .border {
     border: $border; 
 }
+.border-t {
+    border-top: $border;
+}
+.border-b {
+    border-bottom: $border;
+}
+.border-r {
+    border-right: $border;
+}
+.border-r-none {
+    border-right: none;
+}
+.border-l {
+    &-4{
+        border-left: solid 4px;
+    }
+    border-left: $border;
+}
+.border-l-none {
+    border-left: none;
+}
+.pos-rel {
+    position: relative;
+}
 
-.w-fc {
+.cp {
+    cursor: pointer;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.transition-03 {
+    transition: .3s;
+}
+
+.transform-270 {
+    transform: rotate(270deg);
+}
+.transform-180 {
+    transform: rotate(180deg);
+}
+.transform-90 {
+    transform: rotate(90deg);
+}
+.transform-0 {
+    transform: rotate(0deg);
+}
+
+.align-content-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.listes {
+    &:nth-child(odd) {
+        background: map-get($colors, light );
+    }
+}
+
+.modal {
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    &-bg {
+        cursor: pointer;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba($color: #000000, $alpha: .2);
+    }
+    &-body {
+        box-shadow: inset 0 0 4px #00000050;
+        position: absolute;
+        background-color: white;
+        border-radius: 4px;
+        top: 10vh;
+        left: 35%;
+        right: 35%;
+        max-height: 80vh;
+        overflow-y: auto;
+        overflow-x: none;
+        &::-webkit-scrollbar {
+            width: 4px;
+          }
+    
+          &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.507);
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.637);
+            outline: 1px solid rgb(0, 0, 0);
+          }
+        &-lg {
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            right: 10%;
+        }
+    }
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+  
+  @media (min-width:576px) {
+    .container {
+      max-width: 540px
+    }
+  }
+  
+  @media (min-width:768px) {
+    .container {
+      max-width: 720px
+    }
+  }
+  
+  @media (min-width:992px) {
+    .container {
+      max-width: 960px
+    }
+  }
+  
+  @media (min-width:1200px) {
+    .container {
+      max-width: 1280px
+    }
+  }
+
+a:hover {
+    text-decoration: underline;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+.f-mono {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+button {
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    height: fit-content;
     width: fit-content;
+    border: 1px solid #999;
+    cursor: pointer;
 }
 
-.bs{
-    box-shadow: 0 0 4px rgba(  map-get($map: $colors, $key: black), .4 );
-}
-.bs-inset {
-    box-shadow: inset 0 0 4px rgba(  map-get($map: $colors, $key: black), .4 );
-}
-.ts {
-    text-shadow: 0px 0px 4px #00000030;
+.d {
+    &-block {
+        display: block;
+    }
+    &-flex {
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    &-ib {
+        display: inline-block;
+    }
+    &-none {
+        display: none;
+    }
 }
 
-.hide-text {
-    overflow: hidden; 
+.btn {
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 0 4px #00000040;
+    height: fit-content;
+    width: fit-content;
+    border: 1px solid #999;
+    cursor: pointer;
+    transition: .3s;
+    &:disabled {
+        opacity: .6;
+        cursor: not-allowed;
+    }
+    &:focus {
+        outline: none;
+    }
+    &:active {
+        box-shadow: inset 0 0 4px #00000060;
+    }
+    &-circle {
+        border-radius: 20px;
+        padding: .5rem;
+        &:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+        &:focus {
+            outline: none;
+        }
+        &:active {
+            box-shadow: inset 0 0 4px #00000060;
+        }
+    }
 }
 
-@each $name,
-$size in $sizing {
+input, textarea, select {
+    background: #fff;
+    resize: none;
+    padding: .5rem;
+    border-radius: 4px;
+    border: 1px solid map-get($colors, light-1);
+    box-shadow: 0 0 4px #00000040;
+    &:focus {
+        outline: none;
+    }
+}
+
+@each $name, $size in $sizing {
     .p-#{$name} {
         padding: $size;
     }
@@ -98,6 +337,7 @@ $size in $sizing {
     .mb-#{$name} {
         margin-bottom: $size;
     }
+
     .fs-#{$name} {
         font-size: $size;
     }
@@ -107,126 +347,115 @@ $size in $sizing {
     .color-#{$name} {
         color: $color;
     }
+    .bg-#{$name}-05 {
+        background-color: rgba($color, .5);
+    }
+    .bg-#{$name}-01 {
+        background-color: rgba($color, .1);
+    }
     .bg-#{$name} {
         background-color: $color;
     }
-    .btn-#{$name} {
-        padding: .5rem 1rem;
-        background: $color;
-        border-radius: 4px;
-        box-shadow: 0 0 4px #00000040;
-        height: fit-content;
-        width: fit-content;
-        cursor: pointer;
-        &:hover {
-            box-shadow: 0 0 4px #00000060;
-            // border:1px solid darken($color, 20%);
-        }&:disabled {
-            opacity: .6;
-            cursor: not-allowed;
-        }
-    }
+    
     .border-#{$name} {
         border-color: $color;
     }
-    .bs-#{$name}{
-        box-shadow: 0 0 4px rgba($color, .4);
+    .btn-outline-#{$name} {
+        border-color: $color;
+        background-color: #00000000;
+        color: $color;
+    }
+    .btn-#{$name} {
+        background: $color;
+        border-color: $color;
+        @if $name == warning{
+            color: #222;
+        } @else if $name == light {
+            color: #222;
+        } @else if $name == white {
+            color: #222;
+        } @else{
+            color: white;
+        }
+    }
+    .bs-#{$name} {
+        box-shadow: 0 0 4px rgba($color, .1);
+        &-inset-l {
+            box-shadow: inset 4px 0 0 rgba($color, 1);
+        }
+    }
+    .hover-#{$name}:hover {
+        background-color: $color;
+        @if $name == warning{
+            color: #222;
+        } @else if $name == light {
+            color: #222;
+        } @else if $name == white {
+            color: #222;
+        } @else{
+            color: white;
+        }
+    }
+    .hover-#{$name}-05:hover {
+        background-color: rgba($color, .5);
+        @if $name == warning{
+            color: #222;
+        } @else if $name == light {
+            color: #222;
+        } @else if $name == white {
+            color: #222;
+        } @else{
+            color: white;
+        }
     }
 }
 @each $name, $width in $width {
     .w-#{$name} {
         width: $width;
     }
-}
-
-.table {
-    position: relative;
-    border-radius: 4px;
-    &-title {
-        position: absolute;
-        top: -2rem;
-        left: .2rem;
-        padding: .5rem;
-        background: #fff;
-        border: 1px solid #00000040;
-        border-radius: 2px;
-    }
-    .row{
-        padding: .5rem .5rem .5rem 1rem;
-        &:last-child {
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
-        }
-        &:nth-child(odd) {
-            background: #f4f4f4;
-        }
-        &:first-child {
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            padding-top: 1rem;
-            // border-radius: 4px 4px 0 0;
-        }
-        &:hover {
-            background: #d1d1d1;
-        }
+    .h-#{$name} {
+        height: $width;
     }
 }
 
 
-.border-t {
-    border-top: $border;
-}
-.border-b {
-    border-bottom: $border;
-}
+
+
+
 
 .border-radius {
     border-radius: 4px;
 }
-
-
-.modal {
-    z-index: 2000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    &-bg {
-        cursor: pointer;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba($color: #000000, $alpha: .2);
-    }
-    &-body {
-        box-shadow: inset 0 0 4px #00000050;
-        position: absolute;
-        background-color: white;
-        border-radius: 4px;
-        top: 10vh;
-        left: 35%;
-        right: 35%;
-        max-height: 80vh;
-        overflow-y: auto;
-        overflow-x: none;
-        &::-webkit-scrollbar {
-            width: 4px;
-          }
-    
-          &::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.507);
-          }
-          &::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.637);
-            outline: 1px solid rgb(0, 0, 0);
-          }
-        &-lg {
-            position: absolute;
-            left: 10%;
-            top: 10%;
-            right: 10%;
-        }
-    }
+.br {
+    border-radius: 4px;
 }
+.br-b {
+    border-radius: 0 0 4px 4px;
+}
+.br-t {
+    border-radius: 4px 4px 0 0;
+}
+.br-l {
+    border-radius: 4px 0 0 4px;
+}
+.br-r {
+    border-radius: 0 4px 4px 0;
+}
+.bs{
+    box-shadow: 0 0 4px rgba(  map-get($map: $colors, $key: black), .2 );
+}
+
+.bs-none{
+    box-shadow: none;
+}
+.bs-inset {
+    box-shadow: inset 0 0 4px rgba(  map-get($map: $colors, $key: black), .4 );
+}
+.ts {
+    text-shadow: 0px 0px 4px #00000030;
+}
+
+
 
 .display-flex {
     display: flex;
@@ -239,10 +468,67 @@ $size in $sizing {
 .text-center {
     text-align: center;
 }
+.text-right {
+    text-align: right;
+}
 .va-bottom {
     vertical-align: bottom;
 }
+
+
+
 .form-group {
+    position: relative;
+    label{
+        display: flex;
+        margin-bottom: .3rem;
+        color: map-get($colors, main-1);
+    }
+    input[type=text], textarea {
+        width: 100%;
+        &:focus {
+            outline: none;
+        }
+    }
+    .switcher {
+        position: relative;
+        cursor: pointer;
+        &::before{
+            content: "";
+            height: 16px;
+            width: 24px;
+            border-radius: 8px;
+            border: 1px solid map-get($colors, light-2);
+            background-color: map-get($colors, light);
+            margin-right: .3rem;
+            transition: .3s;
+        }
+        &::after{
+            content: "";
+            transition: .3s;
+            position: absolute;
+            height: 12px;
+            width: 12px;
+            background-color: map-get($colors, gray );
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+        }
+    }
+
+    .switcher-enable {
+        &::before {
+            border-color: green;
+        }
+        &::after {
+            left: 10px;
+            background-color: green;
+        }
+    }
+}
+
+
+.form-group-material {
     position: relative;
     label {
         position: absolute;
@@ -272,18 +558,13 @@ $size in $sizing {
             border: none;
             border-bottom: 1px solid #00000030;
             width: 90%;
+            box-shadow: none;
+            border-radius: none;
             &:focus {
                 border-color: map-get($colors, blue );
             }
         }
     }
-}
-
-button {
-    padding: .5rem;
-    border-radius: 4px;
-    border: 1px solid #999;
-    cursor: pointer;
 }
 
 .font-cursive {
