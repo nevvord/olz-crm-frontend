@@ -9,7 +9,12 @@ div
   .px-2.pt-4(v-if="calls")
     .table.bg-white.bs
       .table-title Все добавленные
-      .t-list(v-for="(call, index) in calls" :key="index" v-if="call.type === 2")
+      .t-list(
+        v-for="(call, index) in calls"
+        :key="index"
+        v-if="call.type === 2"
+        @dblclick="openModal(call, index)"
+        )
         .row
           .col-3
             .row

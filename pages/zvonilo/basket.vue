@@ -3,7 +3,10 @@ div
   .container.p-none.mt-4.bg-white.bs.br
     .table
       .table-title Корзина
-    .t-list.row(v-for="(basket, index) in baskets" :key="index")
+    .t-list.row(
+      v-for="(basket, index) in baskets"
+      :key="index"
+    )
       .col-3
         .d-flex
           .element

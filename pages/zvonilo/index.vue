@@ -13,7 +13,6 @@ div
         v-for="(call, index) in calls" 
         :key="index" 
         @dblclick="openModal(call, index)"
-        :class="{'border-l-4 border-danger': call.type === 1, 'border-l-4 border-blue': call.type === 2, 'border-l-4 border-': call.type === 3, 'bs-success-inset-l': call.status === 1, 'bs-warning-inset-l': call.status === 2, 'bs-dark-inset-l': call.status === 3}"
       )
         .row
           .col-3

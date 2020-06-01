@@ -492,37 +492,42 @@ input, textarea, select {
     }
     .switcher {
         position: relative;
-        cursor: pointer;
-        &::before{
-            content: "";
-            height: 16px;
-            width: 24px;
-            border-radius: 8px;
-            border: 1px solid map-get($colors, light-2);
-            background-color: map-get($colors, light);
-            margin-right: .3rem;
-            transition: .3s;
+        margin-left: .3rem;
+        .switch {
+            padding-left: .3rem;
+            &::before{
+                position: absolute;
+                left: 0;
+                content: "";
+                height: 16px;
+                width: 24px;
+                border-radius: 8px;
+                border: 1px solid map-get($colors, light-2);
+                background-color: map-get($colors, light);
+                margin-right: .3rem;
+                transition: .3s;
+                left: -26px;
+            }
+            &::after{
+                content: "";
+                transition: .3s;
+                position: absolute;
+                height: 12px;
+                width: 12px;
+                background-color: map-get($colors, gray );
+                border-radius: 50%;
+                top: 2px;
+                left: -24px;
+            }
         }
-        &::after{
-            content: "";
-            transition: .3s;
-            position: absolute;
-            height: 12px;
-            width: 12px;
-            background-color: map-get($colors, gray );
-            border-radius: 50%;
-            top: 2px;
-            left: 2px;
-        }
-    }
-
-    .switcher-enable {
-        &::before {
-            border-color: green;
-        }
-        &::after {
-            left: 10px;
-            background-color: green;
+        input[type=checkbox]:checked+.switch{
+            &::before {
+                border-color: map-get($colors, success);
+            }
+            &::after {
+                left: -16px;
+                background-color: map-get($colors, success);
+            }
         }
     }
 }

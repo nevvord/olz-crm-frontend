@@ -47,15 +47,16 @@ div
                 label(:for="`maxLength${index}`") Максимальная длина
                 input(type="text" :id="`maxLength${index}`" name="minLength" v-model="char.maxLength")
               .form-group.col-2.px-1.pt-2
-                label.switcher(:for="`required${index}`") Обязательно
-                input.d-none(
-                  type="checkbox"
-                  true-value="true"
-                  false-value="false"
-                  onChange="nevviSwitch(event)"
-                  v-model="char.required"
-                  :id="`required${index}`"
-                )
+                .switcher
+                  input.d-none(
+                    type="checkbox"
+                    true-value="true"
+                    false-value="false"
+                    :id="`switch-${index}`"
+                    v-model="char.onlyNumber"
+                  )
+                  label.switch(:for="`switch-${index}`")
+                    span Только числа
           //- SELECT
           .col-12.p-1(v-if="char.type === 'select'")
             .selects.row 
@@ -112,7 +113,7 @@ export default {
         case 'text':
           this.form.characteristics[index].minLength = 0
           this.form.characteristics[index].maxLength = 3
-          this.form.characteristics[index].required = false
+          this.form.characteristics[index].onlyNumber = false
           break
         
         case 'select':
